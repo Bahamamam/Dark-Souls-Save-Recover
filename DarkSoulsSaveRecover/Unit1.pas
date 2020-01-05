@@ -251,7 +251,7 @@ begin
   end;
 
   // Load game if pressed F9
-  if Msg.LParamHi = VK_F8 then
+  if Msg.LParamHi = VK_F9 then
   begin
    FullDirectoryCopy(SavePath, LoadPath, false, true);
    if Audio = '1' then sndPlaySound('LOAD', SND_MEMORY or SND_RESOURCE or SND_ASYNC);
@@ -397,8 +397,8 @@ end;
 // Function create hotkey hook
 function TForm1.InitializateHotkeys:string;
 begin
-  F9_ID := GlobalAddAtom('HotkeyF8');
-  RegisterHotKey(Handle, 1, 0, VK_F8);
+  F9_ID := GlobalAddAtom('HotkeyF9');
+  RegisterHotKey(Handle, 1, 0, VK_F9);
   F5_ID := GlobalAddAtom('HotkeyF5');
   RegisterHotKey(Handle, 1, 0, VK_F5);
   Enter := GlobalAddAtom('HotkeyEnter');
