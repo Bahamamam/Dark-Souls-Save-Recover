@@ -239,30 +239,38 @@ var ngame,
 begin
   // Save game if pressed F5
   if Msg.LParamHi = VK_F5 then
-  begin
-   FullDirectoryCopy(LoadPath, SavePath, false, true);
-   if Audio = '1' then sndPlaySound('SAVE', SND_MEMORY or SND_RESOURCE or SND_ASYNC);
-   case StrToInt(GameID) of
-    0 : ngame := 'DS1';
-    1 : ngame := 'DSR';
+  if GameID > '' 
+  then 
+   begin
+     FullDirectoryCopy(LoadPath, SavePath, false, true);
+     if Audio = '1' then sndPlaySound('SAVE', SND_MEMORY or SND_RESOURCE or SND_ASYNC);
+      case StrToInt(GameID) of
+      0 : ngame := 'DS1';
+      1 : ngame := 'DSR';
     2 : ngame := 'DS2';
     3 : ngame := 'DS3';
-   end;
-  end;
-
+      end;
+   end
+  else
+  ShowMessage('You didn''t chose a game. Please, click on icon in tray and choose a game.');
+  
   // Load game if pressed F9
   if Msg.LParamHi = VK_F9 then
-  begin
-   FullDirectoryCopy(SavePath, LoadPath, false, true);
-   if Audio = '1' then sndPlaySound('LOAD', SND_MEMORY or SND_RESOURCE or SND_ASYNC);
+  if GameID > ''
+  then
+   begin
+    FullDirectoryCopy(SavePath, LoadPath, false, true);
+    if Audio = '1' then sndPlaySound('LOAD', SND_MEMORY or SND_RESOURCE or SND_ASYNC);
 
-   case StrToInt(GameID) of
-    0 : ngame := 'DS1';
-    1 : ngame := 'DSR';
-    2 : ngame := 'DS2';
-    3 : ngame := 'DS3';
-   end;
-  end;
+     case StrToInt(GameID) of
+     0 : ngame := 'DS1';
+     1 : ngame := 'DSR';
+     2 : ngame := 'DS2';
+     3 : ngame := 'DS3';
+     end;
+   end
+  else
+  ShowMessage('You didn''t chose a game. Please, click on icon in tray and choose a game.'); 
 
   // Make fullscreen game if pressed Alt+Enter
   if Msg.LParamHi = &VK_Return then
